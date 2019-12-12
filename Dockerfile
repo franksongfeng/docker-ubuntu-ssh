@@ -6,23 +6,26 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV TIME_ZONE Asia/Shanghai
 
 RUN apt-get update \
-	&& apt-get install -y apt-utils tzdata net-tools iputils-ping ufw lsof curl wget vim-tiny openssh-server \
+	&& apt-get install -y apt-utils tzdata net-tools iputils-ping \
+		vim-tiny \
+		supervisor \
+		openssh-server \
+		xfce4 xfce4-goodies \
+		x11vnc xvfb \
+		firefox \
 	&& apt-get autoclean \
 	&& apt-get autoremove \
 	&& rm -rf /var/lib/apt/lists/*
 
+
 RUN echo "${TIME_ZONE}" > /etc/timezone && \ 
     ln -sf /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime
 
-ARG ROOT_PWD=myadmin
-ARG PORT_SSH=22
-RUN echo 'root:'${ROOT_PWD} | chpasswd
-RUN mkdir -p /var/run/sshd && \
-    sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config && \
-    sed -ri "s/^Port\s+.*/Port ${PORT_SSH}/" /etc/ssh/sshd_config && \
-    sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config && \
-    /usr/sbin/sshd -D
+WORKDIR /root
 
-EXPOSE ${PORT_SSH}
+ADD startup.sh ./
+ADD supervisord.conf ./
 
-ENTRYPOINT ["/bin/bash"]
+EXPOSE 22
+
+ENTRYPOINT ["./startup.sh"]
