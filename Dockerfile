@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV TIME_ZONE Asia/Shanghai
 
 RUN apt-get update \
-	&& apt-get install -y apt-utils tzdata net-tools iputils-ping ufw lsof curl wget openssh-server vim-tiny \
+	&& apt-get install -y apt-utils tzdata net-tools iputils-ping ufw lsof curl wget vim-tiny openssh-server \
 	&& apt-get autoclean \
 	&& apt-get autoremove \
 	&& rm -rf /var/lib/apt/lists/*
