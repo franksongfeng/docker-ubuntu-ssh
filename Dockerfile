@@ -12,7 +12,6 @@ RUN apt-get update \
 		openssh-server \
 		xfce4 xfce4-goodies \
 		x11vnc xvfb \
-		firefox \
 	&& apt-get autoclean \
 	&& apt-get autoremove \
 	&& rm -rf /var/lib/apt/lists/*
