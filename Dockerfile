@@ -18,6 +18,13 @@ RUN apt-get update \
 RUN echo "${TIME_ZONE}" > /etc/timezone && \ 
     ln -sf /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime
 
+ROOT_PWD=myadmin
+RUN echo 'root:'${ROOT_PWD} | chpasswd && \
+    mkdir -p /var/run/sshd && \
+    sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config && \
+    sed -ri "s/^Port\s+.*/Port 22/" /etc/ssh/sshd_config && \
+    sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
+
 WORKDIR /root
 
 ADD startup.sh ./
