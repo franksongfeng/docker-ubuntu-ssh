@@ -31,4 +31,6 @@ ADD supervisord.conf ./
 
 EXPOSE 22
 
+RUN chmod +x ./startup.sh
+
 ENTRYPOINT ["./startup.sh"]
