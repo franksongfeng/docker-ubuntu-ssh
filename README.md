@@ -4,7 +4,7 @@ Image and Container
 ### Pull image
 
 ``
-$ docker pull franksongfeng/docker-ubuntu-desktop
+$ docker pull franksongfeng/docker-ubuntu-ssh
 ``
 
 ### Build image
