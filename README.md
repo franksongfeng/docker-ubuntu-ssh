@@ -8,12 +8,6 @@ $ git clone https://github.com/franksongfeng/docker-ubuntu-ssh.git
 ``
 
 ``
-$ docker image build --rm -t franksongfeng/ubuntu-ssh docker-ubuntu-ssh
-``
-
-### Build image locally
-
-``
 $ docker image build --rm -t ubuntu-ssh .
 ``
 
