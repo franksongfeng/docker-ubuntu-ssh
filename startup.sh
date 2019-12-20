@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 # start up supervisord, all daemons should launched by supervisord.
