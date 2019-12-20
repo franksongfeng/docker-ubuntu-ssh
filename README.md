@@ -1,6 +1,12 @@
 Image and Container
 ===================
 
+### Pull image
+
+``
+$ docker pull franksongfeng/docker-ubuntu-desktop
+``
+
 ### Build image
 
 ``
