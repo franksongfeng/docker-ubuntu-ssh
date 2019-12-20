@@ -4,7 +4,6 @@ MAINTAINER Feng Song <franksongfeng@yahoo.com>
 ENV HOME /root
 ENV DEBIAN_FRONTEND noninteractive
 ENV TIME_ZONE Asia/Shanghai
-ENV ROOT_PWD admin
 
 RUN apt-get update \
 	&& apt-get install -y apt-utils tzdata net-tools iputils-ping \
@@ -18,6 +17,7 @@ RUN apt-get update \
 RUN echo "${TIME_ZONE}" > /etc/timezone && \ 
     ln -sf /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime
 
+ARG ROOT_PWD=admin
 RUN echo 'root:'${ROOT_PWD} | chpasswd && \
     mkdir -p /var/run/sshd && \
     sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config && \
