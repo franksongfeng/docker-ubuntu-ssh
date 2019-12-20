@@ -1,12 +1,6 @@
 Image and Container
 ===================
 
-### Pull image
-
-``
-$ docker pull songfeng/docker-ubuntu-ssh
-``
-
 ### Build image
 
 ``
