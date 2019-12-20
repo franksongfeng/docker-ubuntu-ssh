@@ -15,7 +15,6 @@ RUN apt-get update \
 	&& apt-get autoremove \
 	&& rm -rf /var/lib/apt/lists/*
 
-
 RUN echo "${TIME_ZONE}" > /etc/timezone && \ 
     ln -sf /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime
 
